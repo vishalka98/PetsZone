@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+<!--{{qs}}
+
+
+{'paginator': None, 'page_obj': None, 'is_paginated': False, 
+'object_list': <QuerySet [<product: ertyhj>, 
+	<product: tshirt>, <product: jeans>]>, 
+	'product_list': <QuerySet [<product: ertyhj>, 
+		<product: tshirt>, <product: jeans>]>,
+	 'view': <product1.views.productlistview object at 0x03D92070>}
+
+{{paginator}}
+
+{{is_paginated}}	
+
+{{product_list}}-->
+
+
+{% block content %}
+
+<div class="row" mb-3>
+	{% if query %}
+      <div class="col-12 mb-3">
+      	searched for <b>{{ query }}</b>
+      	<hr/>
+      </div>
+       {% else %} 
+       <div class="col-12 col-md-6 mx-auto py-5">
+        {% include 'search/snippets/search-form.html' %}
+       </div>
+       <div class="col-12">
+       	<hr/>
+       </div>
+
+     {% endif %}
+
+</div>
+
+
+
+<div class="row">
+      
+{% for obj in object_list %}
+
+<div class="col">
+	
+{% include 'product1/snippets/card.html' with instance=obj %}
+{% if forloop.counter|divisibleby:3 %}
+</div></div><div class='row'><div class="col-12"><hr/></div>
+
+{% elif forloop.counter|divisibleby:4 %}
+</div><div class='row'><div class="col-12"><hr/></div>
+{% else %}
+
+</div>
+{% endif %}
+
+{%endfor%}
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+
+{% load static %}
+    <title>home templete</title>
+{% block content %}
+ <div class='text-center'>
+          
+      </div>
+    
+        <div class='row'>
+          <div class='col'>
+              
+              {% include 'homepage.html' %}
+              <p>{{ content }}</p>
+          </div>
+        </div>
+        {% if request.user.is_authenticated %}
+        <div class='row'>
+          <div class='col'>
+          <h1>Premium</h1>
+          {{ premium_content }}
+          </div>
+        </div>
+        {% endif %}
+    
+{% endblock %}
+
